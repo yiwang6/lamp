@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-COPY ./start.sh /start.sh
+COPY ./src/start.sh /start.sh
 
 RUN apt-get install -y wget \
     && wget http://dl.wdlinux.cn/files/lanmp_v3.2.tar.gz \
