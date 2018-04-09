@@ -1,18 +1,14 @@
 FROM ubuntu:16.04
 
-RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+COPY ./start.sh /start.sh
 
-# Update sources
-RUN apt-get update -y
-RUN apt-get install -y wget
-RUN wget http://dl.wdlinux.cn/files/lanmp_v3.2.tar.gz
-RUN tar zxvf lanmp_v3.2.tar.gz
-RUN sh lanmp.sh & 2&
+RUN yum install -y wget \
+    && wget http://dl.wdlinux.cn/files/lanmp_v3.2.tar.gz \
+    && tar zxvf lanmp_v3.2.tar.gz \
+    && sed -i 's/read -p "Please Input 1,2,3,4,5: " SERVER_ID/SERVER_ID=2/g' lanmp.sh \
+    && chmod +x /start.sh \
+    && sh lanmp.sh
 
-COPY src/start.sh /start.sh
-RUN chmod a+x /start.sh
+EXPOSE 21 80 443 3306 8080 20000-20500
 
-EXPOSE 80 443 8080
 CMD ["/start.sh"]
