@@ -9,6 +9,6 @@ RUN apt-get install -y wget \
     && chmod +x /start.sh \
     && sh lanmp.sh
 
-EXPOSE 21 80 443 3306 8080 20000-20500
+EXPOSE 80 8080
 
 CMD ["/start.sh"]
