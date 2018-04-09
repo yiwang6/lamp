@@ -1,5 +1,4 @@
-FROM ubuntu:14.04
-MAINTAINER Medici.Yan <Medici.Yan@Gmail.com>
+FROM ubuntu:16.04
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 ENV TZ=Asia/Shanghai
