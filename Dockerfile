@@ -6,7 +6,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Update sources
 RUN apt-get update -y
-RUN yum install -y wget
+RUN apt-get install -y wget
 RUN wget http://dl.wdlinux.cn/files/lanmp_v3.2.tar.gz
 RUN tar zxvf lanmp_v3.2.tar.gz
 RUN sh lanmp.sh & 2&
